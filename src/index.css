@@ -23,10 +23,16 @@ body {
   grid-row-gap: 30px;
 }
 .calculator {
-  display: grid;
-  grid-gap: 12px;
+  display: flex;
+  flex-direction: column;
   width: 240px;
   height: 448px;
+  grid-gap: 12px;
+}
+
+.active-calculator {
+  border: 2px solid #5D5FEF;
+  margin: -2px;
 }
 
 .display {
@@ -36,6 +42,7 @@ body {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06), 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
+
 .display-text-field {
   background-color: #F3F4F6;
   border-radius: 6px;
@@ -48,12 +55,15 @@ body {
   line-height: 44px;
   font-weight: 800;
   font-size: 36px;
+  overflow: hidden;
 }
 
 .dashboard {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06), 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   box-sizing: border-box;
+  width: 240px;
+  height: 56px;
   padding: 4px;
   display: flex;
   justify-content: space-between;
@@ -70,12 +80,17 @@ body {
   justify-content: center;
   align-items: center;
 }
-/*
-.dashboard-item:hover {
+
+.mouseDown {
+  background-color: #5D5FEF;
+  color: white;
+}
+
+.runtime-dashboard:hover {
   border: 2px solid #5D5FEF;
   cursor: pointer;
 }
-*/
+
 .number-display {
   display: grid;
   box-sizing: border-box;
@@ -96,13 +111,12 @@ body {
   border: 1px solid #E2E3E5;
   border-radius: 6px;
 }
-/*
-.number-display-item:hover {
+
+.runtime-number:hover {
   border: 2px solid #5D5FEF;
   margin: -1px;
   cursor: pointer;
 }
-*/
 
 .item-zero {
   grid-column-start: 1;
@@ -125,11 +139,11 @@ body {
   border-radius: 6px;
   height: 64px;
 }
-/*
-.button-equall-item:hover {
+
+.runtime-button-equall:hover {
   cursor: pointer;
 }
-*/
+
 
 .palette {
   width: 243px;
@@ -143,6 +157,10 @@ body {
   text-align: center;
   font-size: 12px;
   line-height: 15px;
+}
+
+.active-palette {
+  background-color: #F0F9FF;
 }
 
 .palette-text {
@@ -171,11 +189,26 @@ body {
   box-sizing: border-box;
   flex-direction: row;
   align-items: center;
+  font-size: 14px;
   height: 100%;
   padding: 8px 12px;
 }
-.unactive {
+
+.switch-item p {
+  padding-left: 10px;
+}
+
+.switch-item:hover {
+  cursor: pointer;
+} 
+
+.active {
   background-color: white;
   border: 1px solid #E2E3E5;
   border-radius: 5px;
+  margin: -1px;
+}
+
+.unactive-calculator {
+  opacity: 50%;
 }
