@@ -2,7 +2,6 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import componentListReducer from "./componentList";
 import displayReducer from "./display";
 
-
 const rootReducer = combineReducers({
     componentList: componentListReducer,
     display: displayReducer
@@ -10,7 +9,7 @@ const rootReducer = combineReducers({
 
 const store = configureStore({
     reducer: rootReducer
-})
+});
 
 export default store;
 

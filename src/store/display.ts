@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Board } from "../types/types";
 
 type DisplayState = {
-    entities: string,
-    secondEntities: string,
-    dash: string,
-    result: string,
-    statusSwitch: string,
+    entities: string;
+    secondEntities: string;
+    dash: string;
+    result: string;
+    statusSwitch: string;
 };
 
 const initialState: DisplayState = {
@@ -15,7 +15,7 @@ const initialState: DisplayState = {
     dash: "",
     result: "",
     statusSwitch: "Constructor"
-}
+};
 
 const displaySlice = createSlice({
     name: "display",
@@ -26,7 +26,7 @@ const displaySlice = createSlice({
         },
         addItemDisplay: (state, action) => {
             if (state.entities === "0" && action.payload !== ",") {
-                state.entities = action.payload
+                state.entities = action.payload;
             } else {
                 state.entities += action.payload;
             }
@@ -34,48 +34,60 @@ const displaySlice = createSlice({
         },
         addItemDash: (state, action) => {
             if (state.result) {
-                state.entities = state.result
-                state.result = ""
+                state.entities = state.result;
+                state.result = "";
             }
-            state.dash = action.payload
+            state.dash = action.payload;
         },
         addItemSecondValue: (state, action) => {
-            state.secondEntities  += action.payload
+            state.secondEntities += action.payload;
         },
         doResult: (state, action) => {
             state.entities = state.entities.replace(",", ".");
             state.secondEntities = state.secondEntities.replace(",", ".");
             if (state.entities && state.secondEntities) {
-            switch (action.payload) {
-                case "+":
-                    state.result = String(Number(state.entities) + Number(state.secondEntities));
-                    break;
-                case "-":
-                    state.result = String(Number(state.entities) - Number(state.secondEntities));
-                    break;
-                case "x":
-                    state.result = String(Number(state.entities) * Number(state.secondEntities));
-                    break;
-                case "/":
-                    if (state.entities === "0") {
-                        state.result = "определенно"
+                switch (action.payload) {
+                    case "+":
+                        state.result = String(
+                            Number(state.entities) +
+                                Number(state.secondEntities)
+                        );
                         break;
-                    }
-                    state.result = String(Number(state.entities) / Number(state.secondEntities));
-                    break;
-            }
+                    case "-":
+                        state.result = String(
+                            Number(state.entities) -
+                                Number(state.secondEntities)
+                        );
+                        break;
+                    case "x":
+                        state.result = String(
+                            Number(state.entities) *
+                                Number(state.secondEntities)
+                        );
+                        break;
+                    case "/":
+                        if (state.entities === "0") {
+                            state.result = "определенно";
+                            break;
+                        }
+                        state.result = String(
+                            Number(state.entities) /
+                                Number(state.secondEntities)
+                        );
+                        break;
+                }
 
-            state.result = state.result.replace(".", ",");
-            state.dash = "";
-            state.entities = "";
-            state.secondEntities = "";
+                state.result = state.result.replace(".", ",");
+                state.dash = "";
+                state.entities = "";
+                state.secondEntities = "";
             }
         },
         statusRun: (state) => {
-            state.statusSwitch = "Runtime"
+            state.statusSwitch = "Runtime";
         },
         statusConstructor: (state) => {
-            state.statusSwitch = "Constructor"
+            state.statusSwitch = "Constructor";
             state.dash = "";
             state.entities = "0";
             state.secondEntities = "";
@@ -85,7 +97,14 @@ const displaySlice = createSlice({
 });
 
 const { reducer: displayReducer, actions } = displaySlice;
-export const { displayReceved, addItemDisplay, addItemDash, addItemSecondValue, doResult, statusRun, statusConstructor } = actions;
+export const {
+    displayReceved,
+    addItemDisplay,
+    addItemDash,
+    addItemSecondValue,
+    doResult,
+    statusRun,
+    statusConstructor
+} = actions;
 
 export default displayReducer;
-

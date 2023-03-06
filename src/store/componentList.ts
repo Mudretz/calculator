@@ -2,14 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Board } from "../types/types";
 
 type ComponentListState = {
-    entities: Board[],
-    lastFetch: number
+    entities: Board[];
 };
 
 const initialState: ComponentListState = {
-    entities: [],
-    lastFetch: 0
-}
+    entities: []
+};
 
 const componentListSlice = createSlice({
     name: "componentList",
@@ -17,7 +15,6 @@ const componentListSlice = createSlice({
     reducers: {
         componentListReceved: (state, action: PayloadAction<Board[]>) => {
             state.entities = action.payload;
-            state.lastFetch = Date.now();
         },
         addComponent: (state, action: PayloadAction<Board>) => {
             state.entities.push(action.payload);
@@ -29,4 +26,3 @@ const { reducer: componentListReducer, actions } = componentListSlice;
 export const { componentListReceved, addComponent } = actions;
 
 export default componentListReducer;
-
